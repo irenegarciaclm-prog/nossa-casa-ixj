@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F6F1EB">
+<title>Nossa Casa IxJ · Casa Cascada</title>
+<style>
+:root {
+  --crema: #F6F1EB;
+  --madera: #5C3D2E;
+  --sage: #A7B99E;
+  --terracota: #8B5E3C;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--crema);
+  color: var(--madera);
+  font-family: Arial, sans-serif;
+}
+.app {
+  max-width: 430px;
+  margin: auto;
+  min-height: 100vh;
+  padding-bottom: 90px;
+}
+header {
+  padding: 22px 20px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.brand { font: 24px Georgia, serif; }
+.subtitle {
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-top: 6px;
+  color: #817267;
+}
+button { font: inherit; cursor: pointer; }
+.sound {
+  border: 1px solid #d8c9b9;
+  background: #fffaf4;
+  color: var(--madera);
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 11px;
+}
+.hero {
+  height: 380px;
+  margin: 0 13px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 25px;
+  background: var(--madera);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: end;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent 20%, #17120edb);
+}
+.hero-content {
+  position: relative;
+  padding: 22px;
+  color: white;
+}
+.tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 1;
+  background: #F6F1EBE8;
+  color: var(--madera);
+  padding: 9px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+}
+.kicker {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+h1 {
+  font: 38px/1.05 Georgia, serif;
+  margin: 12px 0;
+}
+.hero p:last-child {
+  font-size: 13px;
+  line-height: 1.6;
+}
+main { padding: 24px 17px; }
+h2 { font: 25px Georgia, serif; margin-bottom: 5px; }
+.intro {
+  font-size: 12px;
+  color: #82756a;
+  margin-bottom: 17px;
+  line-height: 1.6;
+}
+.rooms {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.room {
+  border: 1px solid #e2d7ca;
+  background: #fffaf4;
+  color: var(--madera);
+  border-radius: 19px;
+  min-height: 125px;
+  padding: 14px;
+  text-align: left;
+  transition: .2s;
+}
+.room:active { transform: scale(.97); }
+.room.active {
+  background: #e7eee2;
+  border-color: var(--sage);
+}
+.room .emoji {
+  display: block;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+.room strong {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+.room small {
+  display: block;
+  font-size: 11px;
+  color: #82756a;
+  line-height: 1.4;
+}
+.wide {
+  grid-column: span 2;
+  min-height: 95px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.wide .emoji { font-size: 30px; margin: 0; }
+.wide strong { font-size: 14px; }
+.note {
+  margin-top: 20px;
+  padding: 20px;
+  background: #eae3d9;
+  border-radius: 20px;
+}
+.note blockquote {
+  margin: 0 0 12px;
+  font: italic 20px/1.4 Georgia, serif;
+}
+.note p { font-size: 12px; line-height: 1.7; }
+footer {
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 2px;
+  padding: 10px;
+  color: #95877a;
+}
+.home {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(400px, calc(100% - 24px));
+  padding: 10px;
+  border: 1px solid #d8c9b9;
+  border-radius: 19px;
+  background: #F6F1EBF2;
+  box-shadow: 0 5px 25px #39291c20;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.home span {
+  flex: 1;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.home button {
+  border: 0;
+  border-radius: 13px;
+  background: var(--madera);
+  color: white;
+  padding: 14px 16px;
+  font-size: 12px;
+}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div>
+    <div class="brand">Nossa Casa IxJ</div>
+    <div class="subtitle">CASA CASCADA · UNIVERSO COMPARTIDO</div>
+  </div>
+  <button class="sound" id="sound">♫ Paisaje sonoro</button>
+</header>
+
+<section class="hero" id="hero">
+  <div class="tag" id="tag">✦ Estás en casa</div>
+  <div class="hero-content">
+    <div class="kicker" id="kicker">Un lugar para ser</div>
+    <h1 id="title">Bienvenid@ a<br>Nossa Casa</h1>
+    <p id="description">¿Dónde quieres ir hoy? Entra sin prisa. La cascada nos encuentra a todos.</p>
+  </div>
+</section>
+
+<main>
+  <h2>Explora la casa</h2>
+  <div class="intro">Ocho mundos. Un mismo latido. Elige dónde te llama estar.</div>
+
+  <nav class="rooms" aria-label="Espacios de la casa">
+    <button class="room wide active" data-room="welcome">
+      <span class="emoji">🚪</span><span><strong>Welcome Hall</strong><small>El portal · empieza tu viaje</small></span>
+    </button>
+    <button class="room" data-room="patio">
+      <span class="emoji">🌊</span><strong>Patio Cascada</strong><small>Agua, musgo y ciervo</small>
+    </button>
+    <button class="room" data-room="poesia">
+      <span class="emoji">🪶</span><strong>Buhardilla Poesía</strong><small>Leer, escribir y descansar</small>
+    </button>
+    <button class="room" data-room="tigre">
+      <span class="emoji">🐯</span><strong>Techo Tigre</strong><small>Estrellas y mantas</small>
+    </button>
+    <button class="room" data-room="taller">
+      <span class="emoji">🛠️</span><strong>Taller Creativo</strong><small>Barro, madera y color</small>
+    </button>
+    <button class="room" data-room="dj">
+      <span class="emoji">🎧</span><strong>Cabina DJ</strong><small>Música y baile descalzo</small>
+    </button>
+    <button class="room" data-room="juegos">
+      <span class="emoji">🎲</span><strong>Rincón de Juegos</strong><small>Cartas, risas y puzles</small>
+    </button>
+    <button class="room wide" data-room="cocina">
+      <span class="emoji">🔥</span><span><strong>Cocina Fuego</strong><small>Pan recién hecho y mesa comunal</small></span>
+    </button>
+  </nav>
+
+  <section class="note">
+    <blockquote id="quote">“No tienes que estar en todas partes. Solo donde te llame el corazón.”</blockquote>
+    <p id="hint">La casa es de todos y se construye entre todos. No hay horarios rígidos: hay invitaciones, encuentros y espacio para cambiar de idea.</p>
+  </section>
+  <footer>IXJ · MADERA, AGUA Y ENCUENTROS</footer>
+</main>
+</div>
+
+<div class="home">
+  <span>La cascada<br>siempre te espera.</span>
+  <button onclick="goRoom('patio')">🌊 Volver a casa</button>
+</div>
+
+<script>
+const anchor = "https://i.postimg.cc/wMyqhH9t/casajpg.jpg";
+
+const rooms = {
+welcome: {
+ tag:"✦ Estás en casa",
+ kicker:"Un lugar para ser",
+ title:"Bienvenid@ a<br>Nossa Casa",
+ description:"¿Dónde quieres ir hoy? Entra sin prisa. La cascada nos encuentra a todos.",
+ image:anchor,
+ quote:"“No tienes que estar en todas partes. Solo donde te llame el corazón.”",
+ hint:"La casa es de todos y se construye entre todos. No hay horarios rígidos: hay invitaciones y encuentros."
+},
+patio: {
+ tag:"🌿 El corazón de la casa",
+ kicker:"Agua que nos reúne",
+ title:"Patio<br>Cascada",
+ description:"Piedra húmeda, musgo vivo y un ciervo que aparece cuando todo se aquieta. Aquí todo encuentra su ritmo.",
+ image:anchor,
+ quote:"“La cascada no dirige la casa: la acompaña.”",
+ hint:"Desde aquí puedes ir a cualquier mundo. Todos están conectados por el patio."
+},
+poesia: {
+ tag:"🪶 Un refugio blando",
+ kicker:"Bajar el volumen",
+ title:"Buhardilla<br>Poesía",
+ description:"Cojines color tierra, libros abiertos, luz suave y té tibio. Un rincón para escribir, leer, dormir o mandar una carta.",
+ image:"https://images.unsplash.com/photo-1444362408440-88b6e5e610a5?auto=format&fit=crop&w=1200&q=85",
+ quote:"“Hay días que solo piden una manta y una página en blanco.”",
+ hint:"Quédate el tiempo que necesites. El Rincón de Juegos está conectado contigo."
+},
+tigre: {
+ tag:"🐯 Mirador nocturno",
+ kicker:"La noche también es hogar",
+ title:"Techo<br>Tigre",
+ description:"Vigas de madera oscura, cristal sobre la cabeza, mantas y un telescopio. La casa mira hacia las estrellas.",
+ image:"https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=85",
+ quote:"“A veces, mirar lejos nos devuelve al presente.”",
+ hint:"Ven a contemplar las estrellas o a no pensar en nada. Aquí no hay prisa."
+},
+taller: {
+ tag:"🛠️ Manos en movimiento",
+ kicker:"Hacer por hacer",
+ title:"Taller<br>Creativo",
+ description:"Una mesa grande, barro, madera, pintura y herramientas. Se crea al ritmo del agua que llega desde el patio.",
+ image:"https://images.unsplash.com/photo-1452860606245-08befc0ff44b?auto=format&fit=crop&w=1200&q=85",
+ quote:"“No hace falta saber cómo termina para empezar.”",
+ hint:"Los materiales se comparten y las ideas se contagian. Puedes venir a aprender, enseñar o probar."
+},
+dj: {
+ tag:"🎧 El pulso",
+ kicker:"Atardecer perpetuo",
+ title:"Cabina<br>DJ",
+ description:"Vinilos, altavoces de madera, luz ámbar y una pista pequeña. La música se mezcla con el agua.",
+ image:"https://images.unsplash.com/photo-1571266028243-d220c9c3b9f0?auto=format&fit=crop&w=1200&q=85",
+ quote:"“Que la música abra una puerta, no que tape el mundo.”",
+ hint:"Sesiones íntimas y espacio para bailar o escuchar desde el borde."
+},
+juegos: {
+ tag:"🎲 El niño interior",
+ kicker:"Jugar también importa",
+ title:"Rincón de<br>Juegos",
+ description:"Juegos artesanales, cartas, puzles, mantas y una mesa japonesa baja. Aquí se viene a reír juntos.",
+ image:"https://images.unsplash.com/photo-1606503153255-59d8b8b82177?auto=format&fit=crop&w=1200&q=85",
+ quote:"“No todo tiene que servir para algo. A veces basta con jugar.”",
+ hint:"Sin pantallas y sin hacerlo perfecto. Si te apetece descansar, la Buhardilla está cerca."
+},
+cocina: {
+ tag:"🔥 El fuego compartido",
+ kicker:"Sentarse a la mesa",
+ title:"Cocina<br>Fuego",
+ description:"Cocina abierta, olla grande, pan recién hecho y una mesa larga. La comida se prepara entre varias manos.",
+ image:"https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=85",
+ quote:"“Una mesa compartida puede convertir desconocidos en casa.”",
+ hint:"Aquí se pica, se amasa, se sirve y se recoge en compañía. Comparte una receta o una historia."
+}
+};
+
+function goRoom(key) {
+  const r = rooms[key];
+  if (!r) return;
+  document.getElementById("hero").style.backgroundImage =
+    'url("' + r.image + '")';
+  document.getElementById("tag").textContent = r.tag;
+  document.getElementById("kicker").textContent = r.kicker;
+  document.getElementById("title").innerHTML = r.title;
+  document.getElementById("description").textContent = r.description;
+  document.getElementById("quote").textContent = r.quote;
+  document.getElementById("hint").textContent = r.hint;
+
+  document.querySelectorAll(".room").forEach(button => {
+    const active = button.dataset.room === key;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+}
+
+document.querySelectorAll(".room").forEach(button => {
+  button.addEventListener("click", () => goRoom(button.dataset.room));
+});
+
+document.getElementById("hero").style.backgroundImage =
+  'url("' + anchor + '")';
+
+let soundOn = false;
+document.getElementById("sound").addEventListener("click", function() {
+  soundOn = !soundOn;
+  this.textContent = soundOn ? "♫ Agua imaginada" : "♫ Paisaje sonoro";
+  document.getElementById("hint").textContent = soundOn
+    ? "Imagina el sonido constante de la cascada, las hojas moviéndose y la música llegando desde la cabina. Esta versión no reproduce audio real."
+    : rooms[document.querySelector(".room.active").dataset.room].hint;
+});
+</script>
+</body>
+  </html>
