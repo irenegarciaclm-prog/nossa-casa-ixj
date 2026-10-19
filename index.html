@@ -3,21 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nossa Casa - Cozy Forest</title>
+<title>Nossa Casa - Cabaña Bosque</title>
 <style>
-:root{--madera:#c9a688;--pared:#fffaf3;--verde:#e8f5e9}
-body{background:#f5efe6; margin:0; font-family:serif;}
-.casa{max-width:900px; margin:auto; padding:20px;}
-.card{background:var(--pared); border-radius:24px; padding:20px; margin-bottom:20px; box-shadow:0 10px 30px rgba(0,0,0,.1); transition:0.3s}
-.card:hover{transform:translateY(-3px)}
-.plano{width:100%; border-radius:20px; border:8px solid var(--madera); cursor: zoom-in;}
-/* EFECTO 3D - NO PLANO */
-.habitacion{position:relative; transform-style: preserve-3d;}
-.secret-book{cursor:pointer; color:#8d6e63; font-weight:bold;}
-.taller{display:none; background:#2e2a24; color:#ffefc7; border:3px dashed #c9a688; animation: abrir 0.8s ease;}
-.taller.activo{display:block;}
-@keyframes abrir{from{transform: scaleY(0); opacity:0} to{transform: scaleY(1); opacity:1}}
-.btn{padding:10px 18px; border-radius:20px; border:none; background:var(--madera); color:white; cursor:pointer; margin:5px}
+body{background:#f5efe6; margin:0; font-family:Georgia,serif; color:#3e2f26}
+.casa{max-width:900px; margin:auto; padding:18px}
+h1{text-align:center}
+.card{background:#fffaf3; border-radius:28px; padding:20px; margin-bottom:20px; box-shadow:0 12px 30px rgba(0,0,0,.12); border:1px solid #efe6d9}
+.plano{width:100%; border-radius:20px; border:8px solid #c9a688; display:block}
+.tag{background:#c9a688; color:white; padding:6px 14px; border-radius:20px; font-size:13px; display:inline-block; margin-bottom:10px}
+.secret-book{background:#f0e0d0; padding:12px 16px; border-radius:12px; cursor:pointer; color:#8d6e63; font-weight:bold; display:inline-block; margin-top:8px; border:2px dashed #c9a688}
+.taller{display:none; background:#2e2a24; color:#ffefc7; border:3px dashed #c9a688; border-radius:20px; padding:16px; margin-top:14px}
+.taller.activo{display:block}
 </style>
 </head>
 <body>
@@ -25,42 +21,35 @@ body{background:#f5efe6; margin:0; font-family:serif;}
 <h1>🏡 Nossa Casa - Cabaña Bosque</h1>
 
 <div class="card">
-<h2>📐 Plano Vista Dron</h2>
-<img class="plano" src="URL_DE_TU_PLANO_DRONE_AQUI" alt="plano dron">
-<p>2 dormitorios, salón 8 personas, cocina barra, baño, jardín cascada + campo fútbol + muro escalada</p>
+<span class="tag">📐 PLANTA GENERAL 1:100</span>
+<h2>Plano Vista Dron</h2>
+<img class="plano" src="./plano-dronjpg" alt="Plano dron">
+<p>2 dorms, salón 8 personas con trampilla secreta (3 clicks lámpara), cocina barra 3 taburetes, baño acogedor, jardín cascada 3m + lago + zona relax + BBQ barra + campo fútbol + muro escalada + columpio.</p>
 </div>
 
-<div class="card habitacion">
+<div class="card">
 <h2>🛋️ Salón - Estante Secreto</h2>
-<p>Para activar el taller: <span class="secret-book" onclick="abrirTaller()">📚 Mueve el libro del estante → [CLICK AQUÍ]</span></p>
-<p>Libros: [Poemas] [Manualidades] [Recetas]</p>
-
+<p>Activa el taller secreto:</p>
+<span class="secret-book" onclick="document.getElementById('taller').classList.add('activo')">📚 Mueve el libro → CLICK AQUÍ</span>
 <div id="taller" class="card taller">
 <h3>🔓 TALLER SECRETO ABIERTO</h3>
-<p>✨ Telas, cajas manualidades, velas, disfraces, máquina coser, rollos tela</p>
-<button class="btn" onclick="cerrarTaller()">Cerrar trampilla</button>
+<p>Telas de colores, cajas manualidades, velas, disfraces, máquina coser, poemas pared, rollos tela. Entrada por trampilla + escaleras.</p>
+<button onclick="document.getElementById('taller').classList.remove('activo')" style="padding:8px 16px; border-radius:20px; border:none; background:#c9a688; color:white;">Cerrar trampilla 🔒</button>
 </div>
 </div>
 
 <div class="card">
-<h2>🏠 Vista Frente - Casa Muñecas</h2>
-<img class="plano" src="URL_DE_TU_VISTA_FRENTE_AQUI" alt="vista frente">
+<span class="tag">🏠 VISTA FRENTE</span>
+<h2>Vista Frente - Casa Muñecas</h2>
+<img class="plano" src="./vista-frentejpg" alt="Vista frente">
+<p>Sección con mecanismo: Libro tirador activa escalera a sótano taller. Incluye zona gamer 2 monitores y zona creativa con maniquí.</p>
 </div>
 
-<div class="card" style="background:var(--verde)">
-<h2>🌲 Materiales</h2>
-<p>Pisos madera abeto • Paredes madera natural • Plantas por todas partes • Luz cálida • Estilo gamer + creatividad + bosque</p>
-</div>
+<div class="card" style="background:#e8f5e9; border:2px solid #a5d6a7;">
+<h2>🌲 Materiales Reales</h2>
+<p><b>Pisos:</b> Madera abeto • <b>Paredes:</b> Madera natural • <b>Detalles:</b> Plantas, LED cálida, toques coloridos • <b>Estructura:</b> Con profundidad 3D</p>
 </div>
 
-<script>
-function abrirTaller(){
- document.getElementById('taller').classList.add('activo');
- window.scrollTo({top: document.getElementById('taller').offsetTop, behavior: 'smooth'});
-}
-function cerrarTaller(){
- document.getElementById('taller').classList.remove('activo');
-}
-</script>
+</div>
 </body>
 </html>
